@@ -1,28 +1,44 @@
-<div class="container-fluid Startcontent">
-    <div class="row justify-content-center">
-        <div class="col-12 mb-2">
-            <h1 class="text-center">Estos son los servicios que tenemos para ofrecete para var mas informacion selecciona alguno</h1>
-        </div>
-        <div class="col-4">
-            <mat-card class="example-card shadow mb-5 cards rounded" [ngClass]="{'hovered': hovered}" (mouseover)="hovered = true" (mouseleave)="hovered = false">
-                <mat-card-header>
-                    <div class="imagenes">                 
-                    </div>
-                </mat-card-header>
-                <mat-card-content>
-                    <mat-card-title>Masaje realajante</mat-card-title>
-                    <p>
-                        Masaje de relajación
-                        <br>
-                        60 minutos
-                        <br>
-                        Valor: $80.000 
-                    </p>
-                </mat-card-content>
-                <mat-card-actions>
-                    <a mat-button href="cita" >Reservar</a>
-                </mat-card-actions>
-            </mat-card>
-        </div>
-    </div>
+<div class="container Startcontent grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div 
+      *ngFor="let servicio of datos" 
+      class="rounded-lg shadow-md overflow-hidden max-w-sm w-full mt-1" 
+      style="background-color: #C4CCC1;"
+    >
+      <div class="relative">
+          <img [src]="" alt="Service image" class="w-full h-64 object-cover">
+      </div>
+      <div class="p-4">
+          <div class="flex justify-between items-start mb-2">
+              <div>
+                  <h2 class="text-xl font-semibold text-gray-800 mb-1">{{ servicio.serviceName }}</h2>
+                  <p class="text-sm text-gray-600">{{ servicio.serviceID }}</p>
+              </div>
+          </div>
+          <div class="py-2">
+              <p class="text-lg font-bold text-green-600">{{ servicio.cost| currency }}</p>
+          </div>
+          <div class="flex items-center mb-2">
+              <span class="text-gray-600 text-sm ml-2"></span>
+          </div>
+          <p class="text-gray-600 text-sm mb-4">{{ servicio.serviceDescription }}</p>
+          <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center">
+                <i class="fa-duotone fa-solid fa-magnifying-glass text-blue-500 mr-2"></i>
+                <span class="text-sm text-gray-600">{{ servicio.nameFieldStudy }}</span>
+              </div>
+              <div class="flex items-center">
+                  <i class="fas fa-clock text-blue-500 mr-2"></i>
+                  <span class="text-sm text-gray-600">{{ servicio.duration }}</span>
+              </div>
+          </div>
+          <div class="flex space-x-2">
+              <button class="flex-1 bg-stone-950 text-white py-2 px-4 rounded-full font-semibold hover:bg-blue-600 transition-colors duration-200">
+                  Agendar
+              </button>
+              <button class="bg-gray-200 text-gray-800 py-2 px-4 rounded-full font-semibold hover:bg-gray-300 transition-colors duration-200">
+                  Ver profesionales
+              </button>
+          </div>
+      </div>
+    </div>  
 </div>

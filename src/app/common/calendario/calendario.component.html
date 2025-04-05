@@ -1,1 +1,175 @@
-<p>calendario works!</p>
+<div class="relative min-h-screen w-full overflow-hidden Startcontent">
+    <!-- Background Image -->
+    <img 
+      src="https://res.cloudinary.com/dzcwmdees/image/upload/v1740691455/antoine-barres_dbzwkf.jpg"
+      alt="Beautiful mountain landscape"
+      class="absolute inset-0 object-cover w-full h-full"
+    />
+    <!-- Main Content -->
+    <main class="relative h-screen w-full pt-3 flex">
+      <!-- Sidebar -->
+      <div class="w-64 h-full bg-white/10 backdrop-blur-lg p-4 shadow-xl border-r border-white/20 rounded-tr-3xl flex flex-col justify-between"
+        [ngClass]="{'opacity-0': !isLoaded, 'animate-fade-in': isLoaded}"
+        [style.animation-delay]="'0.4s'">
+        <div>
+          <!-- Mini Calendar -->
+          <div class="mb-6">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-white font-medium">{{ currentMonth }}</h3>
+              <div class="flex gap-1">
+                <button class="p-1 rounded-full hover:bg-white/20">
+                </button>
+                <button class="p-1 rounded-full hover:bg-white/20">
+                </button> 
+              </div>
+            </div>
+  
+            <div class="grid grid-cols-7 gap-1 text-center">
+              <div *ngFor="let day of ['S', 'M', 'T', 'W', 'T', 'F', 'S']; let i = index" class="text-xs text-white/70 font-medium py-1">
+                {{ day }}
+              </div>
+  
+              <div *ngFor="let day of miniCalendarDays; let i = index" class="text-xs rounded-full w-7 h-7 flex items-center justify-center"
+                [ngClass]="{
+                  'bg-blue-500 text-white': day === 5,
+                  'text-white hover:bg-white/20': day !== 5,
+                  'invisible': !day
+                }">
+                {{ day }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Calendar View -->
+      <div
+        class="flex-1 flex flex-col"
+        [ngClass]="{'opacity-0': !isLoaded, 'animate-fade-in': isLoaded}"
+        [style.animation-delay]="'0.6s'"
+      >
+        <!-- Calendar Controls -->
+        <div class="flex items-center justify-between p-4 border-b border-white/20">
+          <div class="flex items-center gap-4">
+            <span class="text-2xl font-semibold text-white drop-shadow-lg">Calendar</span>
+          </div>
+          <div class="flex items-center gap-4">
+            <button class="px-4 py-2 text-white bg-blue-500 rounded-md">Today</button>
+            <div class="flex">
+              <button class="p-2 text-white hover:bg-white/10 rounded-l-md">
+              </button>
+              <button class="p-2 text-white hover:bg-white/10 rounded-r-md">
+              </button>
+            </div>
+            <h2 class="text-xl font-semibold text-white">{{ currentDate }}</h2>
+          </div>
+        </div>
+  
+        <!-- Week View -->
+        <div class="flex-1 overflow-auto p-4">
+          <div class="backdrop-blur-lg rounded-xl shadow-xl h-full">
+            <!-- Week Header -->
+            <div class="grid grid-cols-8 border-b border-white/20">
+              <div class="p-2 text-center text-white/50 text-xs"></div>
+              <div *ngFor="let day of weekDays; let i = index" class="p-2 text-center border-l border-white/20">
+                <div class="text-xs text-white/70 font-medium">{{ day }}</div>
+                <div
+                  class="text-lg font-medium mt-1 text-white"
+                  [ngClass]="{'bg-blue-500 rounded-full w-8 h-8 flex items-center justify-center mx-auto': weekDates[i] === 5}"
+                >
+                  {{ weekDates[i] }}
+                </div>
+              </div>
+            </div>
+  
+            <!-- Time Grid -->
+            <div class="grid grid-cols-8">
+              <!-- Time Labels -->
+              <div class="text-white/70">
+                <div *ngFor="let time of timeSlots; let i = index" class="h-20 border-b border-white/10 pr-2 text-right text-xs">
+                  {{ time > 12 ? (time - 12) + ' PM' : time + ' AM' }}
+                </div>
+              </div>
+  
+              <!-- Days Columns -->
+              <div *ngFor="let i of [0, 1, 2, 3, 4, 5, 6]" class="border-l border-white/20 relative">
+                <div *ngFor="let j of timeSlots" class="h-20 border-b border-white/10"></div>
+  
+                <!-- Events -->
+                <div *ngFor="let event of getEventsForDay(i); let k = index"
+                  class="absolute rounded-md p-2 text-black text-xs shadow-md cursor-pointer transition-all duration-200 ease-in-out hover:translate-y-[-2px] hover:shadow-lg"
+                  style="background-color: #C4CCC1;"
+                  [style.top]="calculateEventStyle(event.startTime, event.endTime).top"
+                  [style.height]="calculateEventStyle(event.startTime, event.endTime).height"
+                  [style.left]="'4px'"
+                  [style.right]="'4px'"
+                  (click)="handleEventClick(event)"
+                >
+                  <div class="font-medium">Sesion disponible</div>
+                  <div class="opacity-80 text-[10px] mt-1">{{ event.startTime }} - {{ event.endTime }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- AI Popup -->
+      <div *ngIf="showAIPopup" class="fixed bottom-8 right-8 z-20">
+        <div class="w-[450px] relative bg-gradient-to-br from-blue-400/30 via-blue-500/30 to-blue-600/30 backdrop-blur-lg p-6 rounded-2xl shadow-xl border border-blue-300/30 text-white">
+          <button (click)="showAIPopup = false" class="absolute top-2 right-2 text-white/70 hover:text-white transition-colors">
+          </button>
+          <div class="flex gap-3">
+            <div class="min-h-[80px]">
+              <p class="text-base font-light">{{ typedText }}</p>
+            </div>
+          </div>
+          <div class="mt-6 flex gap-3">
+            <button (click)="showAIPopup = false" class="flex-1 py-2.5 bg-white/10 hover:bg-white/20 rounded-xl text-sm transition-colors font-medium">
+              Cerrar
+            </button>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Event Details Modal -->
+      <div *ngIf="selectedEvent" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="p-6 rounded-lg shadow-xl max-w-md w-full mx-4" style="background-color: #C4CCC1;"
+        >
+          <h3 class="text-2xl font-bold mb-4 text-black">Sesion disponible</h3>
+          <div class="space-y-3 text-black">
+            <p class="flex items-center">
+              {{ selectedEvent.startTime }} - {{ selectedEvent.endTime }}
+            </p>
+            <p class="flex items-center">
+              {{ selectedEvent.location }}
+            </p>
+            <p class="flex items-center">
+              {{ weekDays[selectedEvent.days_dayID - 1] }}, {{ weekDates[selectedEvent.days_dayID - 1] }} {{ currentMonth }}
+            </p>
+            <p class="flex items-start">
+              <span>
+                <strong>Attendees:</strong>
+                <br />
+                {{ selectedEvent.attendees.join(', ') || 'No attendees' }}
+              </span>
+            </p>
+            <p>
+              <strong>Organizer:</strong> {{ selectedEvent.organizer }}
+            </p>
+            <p>
+              <strong>Description:</strong> {{ selectedEvent.description }}
+            </p>
+          </div>
+          <div class="mt-6 flex justify-end">
+            <button
+              class="bg-white text-gray-800 px-4 py-2 rounded hover:bg-gray-100 transition-colors"
+              (click)="selectedEvent = null"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>

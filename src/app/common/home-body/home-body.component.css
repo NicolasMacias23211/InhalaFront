@@ -1,56 +1,47 @@
-.bg-image {
-    background-image: url('src\assets\ejemplo.jpg'); /* Cambia 'background-image.jpg' por tu propia imagen */
-    background-size: cover;
-    background-position: center bottom;
-    background-repeat: no-repeat;
-    top: 50px; 
-    height: 70vh; /* Establece la altura según tu diseño */
-  }
-  
-  section {
-    display: table;
-  }
-  .cards{
-    border: 3px solid;
-    border-color:#5F704E;
-    background-color:  #EFF1F3;
+section {
+  display: table;
+}
+.cards{
+  border: 3px solid;
+  border-color:#5F704E;
+  background-color:  #EFF1F3;
 }
 
-  .example-label {
-    display: table-cell;
-    font-size: 14px;
-    margin-left: 8px;
-    min-width: 120px;
-  }
-  
-  .example-button-row {
-    display: table-cell;
-    max-width: 600px;
-  }
-  
-  .example-button-row .mat-mdc-button-base {
-    margin: 8px 8px 8px 0;
-  }
-  
-  .example-flex-container {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
-  
-  .example-button-container {
-    display: flex;
-    justify-content: center;
-    width: 120px;
-  }
-  
-  .textos {
-    text-align: left; 
-    font-family: Arial Black; 
-    font-weight: bold;  
-    color: #fff; 
-    text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
-  }
+.example-label {
+  display: table-cell;
+  font-size: 14px;
+  margin-left: 8px;
+  min-width: 120px;
+}
+
+.example-button-row {
+  display: table-cell;
+  max-width: 600px;
+}
+
+.example-button-row .mat-mdc-button-base {
+  margin: 8px 8px 8px 0;
+}
+
+.example-flex-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.example-button-container {
+  display: flex;
+  justify-content: center;
+  width: 120px;
+}
+
+.textos {
+  text-align: left; 
+  font-family: Arial Black; 
+  font-weight: bold;  
+  color: #fff; 
+  text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
+}
 
 .page-header {
     position: relative;

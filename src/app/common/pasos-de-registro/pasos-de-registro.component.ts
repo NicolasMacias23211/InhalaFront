@@ -132,7 +132,7 @@ export class PasosDeRegistroComponent implements OnInit{
       bebe: informacionMedica.alcohol,
       ejercisio: informacionMedica.ejercicio,
       antecendetesFamiliares: informacionMedica.familiares,
-      username: informacionsesion.usuario,
+      userName: informacionsesion.usuario,
       contrasena: informacionsesion.contraseña
     };
     console.log(this.jsonData);

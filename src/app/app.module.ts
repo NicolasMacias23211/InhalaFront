@@ -29,7 +29,7 @@ import { CalendarioComponent } from './common/calendario/calendario.component';
 import { DatePipe } from '@angular/common';
 import { ServicesCardsComponent } from './common/services-cards/services-cards.component';
 import { CitaComponent } from './main/cita/cita.component';
-import { CrearCitaComponent } from './crear-cita/crear-cita.component';
+import { CrearCitaComponent } from './common/crear-cita/crear-cita.component';
 import { UsersTablesComponent } from './common/users-tables/users-tables.component';
 import { AdminsViewsComponent } from './main/admins-views/admins-views.component';
 import { CitasTablesComponent } from './common/citas-tables/citas-tables.component';
@@ -37,6 +37,7 @@ import { ProfesionalesComponent } from './common/profesionales/profesionales.com
 import { MatDialogModule } from '@angular/material/dialog';
 import { EmployeesTablesComponent } from './common/employees-tables/employees-tables.component';
 import { EmployeeEditModalComponent } from './common/employee-edit-modal/employee-edit-modal.component';
+import { CarouselComponent } from './common/image-carrusel/image-carrusel.component';
 
 @NgModule({
   declarations: [
@@ -85,6 +86,7 @@ import { EmployeeEditModalComponent } from './common/employee-edit-modal/employe
     MatCardModule,
     MatButtonModule,
     LoginContentComponent,
+    CarouselComponent
     
   ],
   providers: [DatePipe],

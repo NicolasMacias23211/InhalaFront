@@ -1,4 +1,3 @@
-import { ApiService } from './../../Service/api.service';
 import { Component } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 
@@ -34,10 +33,6 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
   ]
 })
 export class ServiciosComponent {
-  datos: any;
-  hovered: boolean = false
-  constructor(private ApiService: ApiService) { }
-
 
 
 }

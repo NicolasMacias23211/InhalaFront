@@ -1,7 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import {ServiceListModel} from '../models/servicesListModel';
 import { Observable } from 'rxjs';
 import { environment } from '@env/environment';
+import { CalendarEvent } from '../models/calendarEventModel';
 
 
 @Injectable({
@@ -9,13 +11,12 @@ import { environment } from '@env/environment';
 })
 export class ApiService {
 
-
   constructor(private http:HttpClient) { }
 
   private API_URL = environment.API_URL;
 
   login(email: string, password: string): Observable<any> {
-    const body = { email: email, contraseña: password };
+    const body = { userName: email, password: password };
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*'
@@ -49,12 +50,12 @@ export class ApiService {
     return this.http.get(`${this.API_URL}/empleados`,{ headers: headers });
   }
 
-  GetServicios():Observable<any>{
+  GetServicios():Observable<ServiceListModel[]>{
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*'
     });
-    return this.http.get(`${this.API_URL}/servicios`,{ headers: headers });
+    return this.http.get<ServiceListModel[]>(`${this.API_URL}/servicios`,{ headers: headers });
   }
 
   GetCitas():Observable<any>{
@@ -82,16 +83,13 @@ export class ApiService {
     return this.http.get(`${this.API_URL}/users`,{ headers: headers });
   }
 
- sendPostRequest(userData: any) {
-  const url = 'http://localhost:8080/autenticacion';
-  const headers = new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*'
-  });
-
-
-  return this.http.post(url, userData, { headers: headers });
-}
+  getSheduleUser(profesionalId : number):Observable<CalendarEvent[]>{
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
+    });
+    return this.http.get<CalendarEvent[]>(`${this.API_URL}/schedule/${profesionalId}`,{ headers: headers });
+  }
 
 }
 

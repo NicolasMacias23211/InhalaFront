@@ -1,14 +1,14 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatStepper, MatStepperModule } from '@angular/material/stepper';
-import { Router } from '@angular/router';
+import { MatStepperModule } from '@angular/material/stepper';
 import { AuthService } from '../../authentication/AuthService/auth-service.service';
 import { ApiService } from '../../Service/api.service';
+import { CalendarEvent } from 'src/app/models/calendarEventModel';
 
 
 export interface DialogData {
@@ -33,9 +33,8 @@ export interface DialogData {
 })
 
 export class ProfesionalesComponent implements OnInit {
-  datos: any[] | undefined; 
+  datos: CalendarEvent[] = [];
   selectedPersonId: string | null = null; 
-
   userId: number | null;
   constructor(
     private ApiService: ApiService,
@@ -57,6 +56,7 @@ export class ProfesionalesComponent implements OnInit {
       (data) => {
         this.datos = data;
         console.log(this.datos);
+        
       },
       (error) => {
         console.error(error);

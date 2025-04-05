@@ -1,3 +1,5 @@
+import { ServiceListModel } from './../../models/servicesListModel';
+import { ApiService } from './../../Service/api.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
@@ -29,6 +31,24 @@ import { CommonModule } from '@angular/common';
     ])
   ]
 })
+
+
 export class ServicesCardsComponent {
-  hovered: boolean = false
+
+  datos: ServiceListModel[] | undefined;
+  
+  constructor(private ApiService: ApiService) { }
+
+  ngOnInit() {
+    this.ApiService.GetServicios().subscribe(
+      (data: ServiceListModel[]) => {
+        this.datos = data;
+        console.log(this.datos);
+      },
+      (error: any) => {
+        console.error(error);
+      }
+    );
+  }
+
 }

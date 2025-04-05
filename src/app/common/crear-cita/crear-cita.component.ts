@@ -7,8 +7,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatStepper, MatStepperModule } from '@angular/material/stepper';
 import { Router } from '@angular/router';
-import { AuthService } from '../authentication/AuthService/auth-service.service';
-import { ApiService } from '../Service/api.service';
+import { AuthService } from '../../authentication/AuthService/auth-service.service';
+import { ApiService } from '../../Service/api.service';
 
 export interface DialogData {
   errorMessage: string;
@@ -64,15 +64,15 @@ export class CrearCitaComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.ApiService.GetEmpleados().subscribe(
-      (data) => {
-        this.datos = data;
-        console.log(this.datos);
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
+    // this.ApiService.GetEmpleados().subscribe(
+    //   (data) => {
+    //     this.datos = data;
+    //     console.log(this.datos);
+    //   },
+    //   (error) => {
+    //     console.error(error);
+    //   }
+    // );
   }
 
   seleccionarPersona(persona: any) {

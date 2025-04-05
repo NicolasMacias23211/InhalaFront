@@ -48,19 +48,19 @@ import { AuthService } from '../../authentication/AuthService/auth-service.servi
 export class LoginContentComponent{
   hide = true;
   LoginFrom = new FormGroup({
-    email : new FormControl('', Validators.email),
+    email : new FormControl('', Validators.required),
     contraseña : new FormControl('',Validators.required)
   })
   
 
-  userData = { email: '', password: '' };
+  userData = { username: '', password: '' };
 
   constructor(private ApiService: ApiService,private router: Router,private authService: AuthService) { }
 
   submitLoginForm() {
-    this.ApiService.login(this.userData.email, this.userData.password).subscribe(
+    this.ApiService.login(this.userData.username, this.userData.password).subscribe(
       response  => {
-        let data = JSON.parse(response);
+        let data = response;
         console.log(data.id);
         if (data && data.id) {
           this.authService.setUserId(data.id); // Guarda la ID del usuario
@@ -69,7 +69,6 @@ export class LoginContentComponent{
       },
       error => {
         console.error(error);
-        // Aquí puedes manejar los errores
       }
     );
   }
