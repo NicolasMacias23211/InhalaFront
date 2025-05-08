@@ -52,16 +52,17 @@ export class EmployeesTablesComponent implements OnInit {
     });
   }
 
+
   ngOnInit(): void {
-    this.apiService.GetEmpleados().subscribe(data => {
-      this.dataSource.data = data;      
-      if (this.paginator) {
-        this.dataSource.paginator = this.paginator;
-      }
-      if (this.sort) {
-        this.dataSource.sort = this.sort;
-      }
-    });
+    // this.apiService.GetEmpleados().subscribe(data => {
+    //   this.dataSource.data = data;      
+    //   if (this.paginator) {
+    //     this.dataSource.paginator = this.paginator;
+    //   }
+    //   if (this.sort) {
+    //     this.dataSource.sort = this.sort;
+    //   }
+    // });
   }
 
   startEdit(employee: any): void {

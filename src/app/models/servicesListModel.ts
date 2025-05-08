@@ -7,4 +7,5 @@ export interface ServiceListModel {
   uniqueService: boolean;
   fieldOfStudyID: number;
   nameFieldStudy: string;
+  image : String;
 }

@@ -1,20 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatStepperModule } from '@angular/material/stepper';
-import { AuthService } from '../../authentication/AuthService/auth-service.service';
+import { Professional } from 'src/app/models/professionalsModel';
 import { ApiService } from '../../Service/api.service';
-import { CalendarEvent } from 'src/app/models/calendarEventModel';
-
-
-export interface DialogData {
-  errorMessage: string;
-}
-
 
 @Component({
   selector: 'app-profesionales',
@@ -23,49 +11,26 @@ export interface DialogData {
   standalone: true,
   imports: [
     MatButtonModule,
-    CommonModule,
-    MatStepperModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
+    CommonModule
   ],
 })
 
 export class ProfesionalesComponent implements OnInit {
-  datos: CalendarEvent[] = [];
-  selectedPersonId: string | null = null; 
-  userId: number | null;
-  constructor(
-    private ApiService: ApiService,
-    private authService: AuthService,
-    private snackBar: MatSnackBar
-  ) {
-    this.userId = this.authService.getUserId(); 
-  }
 
-  private showError(message: string): void {
-    this.snackBar.open(message, 'Cerrar', {
-      duration: 3000,
-      panelClass: ['custom-snackbar']
-    });
-  }
+  constructor(private ApiService: ApiService){}
+
+  datos: Professional[] = [];
 
   ngOnInit() {
-    this.ApiService.GetEmpleados().subscribe(
-      (data) => {
+    this.ApiService.getProfessionals().subscribe(
+      (data: Professional[]) => {
         this.datos = data;
         console.log(this.datos);
-        
       },
-      (error) => {
+      (error: any) => {
         console.error(error);
       }
     );
   }
 
-  seleccionarPersona(persona: any) {
-    this.selectedPersonId = persona.IdEmpleado;
-  }
-  
 }

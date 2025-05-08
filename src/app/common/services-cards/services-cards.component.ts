@@ -1,10 +1,10 @@
-import { ServiceListModel } from './../../models/servicesListModel';
-import { ApiService } from './../../Service/api.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { CommonModule } from '@angular/common';
+import { ServiceListModel } from './../../models/servicesListModel';
+import { ApiService } from './../../Service/api.service';
 
 @Component({
   selector: 'app-services-cards',
@@ -33,8 +33,7 @@ import { CommonModule } from '@angular/common';
 })
 
 
-export class ServicesCardsComponent {
-
+export class ServicesCardsComponent implements OnInit {
   datos: ServiceListModel[] | undefined;
   
   constructor(private ApiService: ApiService) { }
@@ -43,7 +42,6 @@ export class ServicesCardsComponent {
     this.ApiService.GetServicios().subscribe(
       (data: ServiceListModel[]) => {
         this.datos = data;
-        console.log(this.datos);
       },
       (error: any) => {
         console.error(error);
