@@ -16,7 +16,6 @@
           <div class="flex justify-between items-start mb-1">
               <div>
                   <h2 class="text-xl font-semibold text-gray-800 mb-1">{{ servicio.serviceName }}</h2>
-                  <!-- <p class="text-sm text-gray-600">{{ servicio.serviceID }}</p> -->
               </div>
           </div>
           <div class="py-1">
@@ -38,7 +37,7 @@
           </div>
           <div class="flex space-x-2">
               <button class="flex-1 text-black shadow-lg py-2 px-4 rounded-full font-semibold hover:bg-blue-600 transition-colors duration-200"
-              style="background-color: #8fb374;">
+              style="background-color: #8fb374;" (click)="guardarIdService(servicio)">
                   Agendar
               </button>
               <!-- <button class="bg-gray-200 text-gray-800 py-2 px-4 rounded-full font-semibold hover:bg-gray-300 transition-colors duration-200">

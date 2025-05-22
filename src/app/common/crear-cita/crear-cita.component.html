@@ -1,1 +1,105 @@
-<div class="Startcontent" >
+<div class="Startcontent"></div>
+<div class="container py-4">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="text-center mb-4">
+        <i class="bi bi-check-circle-fill text-success fs-1 mb-2"></i>
+        <h1 class="fs-3 fw-bold">¡Cita Confirmada!</h1>
+        <p class="text-muted">Tu cita ha sido agendada exitosamente</p>
+      </div>
+      <div class="card border-0 shadow-lg rounded-3">
+        <div class="card-header bg-success bg-opacity-25 border-success border-top border-4 border-start-0 border-end-0 border-bottom-0">
+          <h5 class="card-title mb-0 py-2">Detalles de la Cita</h5>
+        </div>
+        <div class="card-body p-4">
+          <!-- Profesional con imagen y profesión -->
+          <div class="mb-3">
+            <div class="d-flex align-items-start">
+              <div class="d-flex align-items-start gap-3 flex-grow-1">
+                <i class="bi bi-person text-muted mt-1"></i>
+                <div>
+                  <p class="text-muted small mb-1">Profesional</p>
+                  <p class="fw-medium mb-0">{{ citaInfo.profesional }}</p>
+                  <p class="text-muted small">{{ citaInfo.profesion }}</p>
+                </div>
+              </div>
+              <div class="ms-3">
+                <img [src]="citaInfo.imagenProfesional" alt="Foto del profesional" class="rounded-3" width="60" height="60">
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <div class="d-flex align-items-start gap-3">
+              <i class="bi bi-scissors text-muted mt-1"></i>
+              <div>
+                <p class="text-muted small mb-1">Servicio</p>
+                <p class="fw-medium">{{ citaInfo.servicio }}</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <div class="row">
+              <div class="col-12 col-sm-4">
+                <div class="d-flex align-items-start gap-3">
+                  <i class="bi bi-calendar-date text-muted mt-1"></i>
+                  <div>
+                    <p class="text-muted small mb-1">Fecha</p>
+                    <p class="fw-medium">{{ formatFecha(citaInfo.fecha) }}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6 col-sm-4"></div>
+              <div class="col-6 col-sm-2">
+                <div class="d-flex align-items-start gap-3">
+                  <i class="bi bi-clock text-muted mt-1"></i>
+                  <div>
+                    <p class="text-muted small mb-1">Hora inicio</p>
+                    <p class="fw-medium">{{ citaInfo.horaInicio }}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6 col-sm-2">
+                <div class="d-flex align-items-start gap-3">
+                  <i class="bi bi-clock-history text-muted mt-1"></i>
+                  <div>
+                    <p class="text-muted small mb-1">Hora fin</p>
+                    <p class="fw-medium">{{ citaInfo.horaFin }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tipo de servicio como select -->
+          <div class="mb-3">
+            <div class="d-flex align-items-start gap-3">
+              <i class="bi bi-geo-alt text-muted mt-1"></i>
+              <div class="w-100">
+                <p class="text-muted small mb-1">Tipo de servicio</p>
+                <select class="form-select" [(ngModel)]="citaInfo.esDomicilio" (change)="onTipoServicioChange($event)" required>
+                  <option *ngFor="let option of tipoServicioOptions" [value]="option.value">{{ option.label }}</option>
+                </select>
+                <p class="small mt-2" *ngIf="citaInfo.esDomicilio">{{ citaInfo.direccion }}</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-top">
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="fw-semibold">Valor total:</span>
+              <span class="fs-4 fw-bold">${{ formatValor(citaInfo.valor) }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-4 text-center">
+        <p class="text-muted small mb-3">Recibirás un recordatorio 24 horas antes de tu cita</p>
+        <!-- Botón finalizar -->
+        <button class="btn bg-success bg-opacity-25 btn-lg px-5" (click)="finalizarProceso()">Finalizar</button>
+      </div>
+    </div>
+  </div>
+</div>

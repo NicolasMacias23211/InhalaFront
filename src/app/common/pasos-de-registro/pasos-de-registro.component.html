@@ -75,13 +75,13 @@
             <div class="col-6 text-right d-flex justify-content-end">
               <mat-form-field class="col-10">
                 <mat-label>Antecedentes quirúrgicos</mat-label>
-                <textarea matInput placeholder="Ingrese aquí toda la información posible sobre cirugías recientes o antiguas" formControlName="quirúrgicos" required></textarea>
+                <textarea matInput placeholder="Escriba aquí toda la información posible sobre cirugías recientes o antiguas" formControlName="quirúrgicos" required></textarea>
               </mat-form-field>
             </div>
             <div class="col-6">
               <mat-form-field class="col-10">
                 <mat-label>Antecedentes Alérgicos</mat-label>
-                <textarea matInput placeholder="" formControlName="Alérgicos" required></textarea>
+                <textarea matInput placeholder="Escriba aquí a qué sustancias, alimentos o medicamentos es alérgico" formControlName="Alérgicos" required></textarea>
               </mat-form-field>
             </div>
           </div>
@@ -89,13 +89,13 @@
             <div class="col-6 text-right d-flex justify-content-end">
               <mat-form-field class="col-10">
                 <mat-label class="text-center">Antecedentes de enfermedades familiares</mat-label>
-                <textarea matInput placeholder="" formControlName="familiares" required></textarea>
+                <textarea matInput placeholder="Escriba aquí cualquier enfermedad que se encuentre en su familia" formControlName="familiares" required></textarea>
               </mat-form-field>
             </div>
             <div class="col-6">
               <mat-form-field class="col-10">
                 <mat-label>Antecedentes farmacológicos</mat-label>
-                <textarea matInput placeholder="" formControlName="farmacológicos" required></textarea>
+                <textarea matInput placeholder="Escriba aquí si consume con regularidad algun tipo de farmaco" formControlName="farmacológicos" required></textarea>
               </mat-form-field>
             </div>
               <div class="col-6 text-right d-flex justify-content-end">
@@ -104,8 +104,8 @@
                   <mat-form-field>
                     <mat-label>Seleccione una opción</mat-label>
                     <mat-select formControlName="fumador" required>
-                      <mat-option value="1">Si</mat-option>
-                      <mat-option value="0">No</mat-option>
+                      <mat-option value=true>Si</mat-option>
+                      <mat-option value=false>No</mat-option>
                     </mat-select>
                   </mat-form-field>
                 </div>
@@ -116,8 +116,8 @@
                   <mat-form-field>
                     <mat-label>Seleccione una opción</mat-label>
                     <mat-select formControlName="alcohol" required>
-                      <mat-option value="1">Si</mat-option>
-                      <mat-option value="0">No</mat-option>
+                      <mat-option value=true>Si</mat-option>
+                      <mat-option value=false>No</mat-option>
                     </mat-select>
                   </mat-form-field>
                 </div>
@@ -129,8 +129,8 @@
                       <mat-form-field>
                           <mat-label>Seleccione una opción</mat-label>
                           <mat-select formControlName="ejercicio" required>
-                              <mat-option value="1">Si</mat-option>
-                              <mat-option value="0">No</mat-option>
+                              <mat-option value=true>Si</mat-option>
+                              <mat-option value=false>No</mat-option>
                           </mat-select>
                       </mat-form-field>
                   </div>
@@ -150,26 +150,26 @@
         <form [formGroup]="thirdFormGroup">
           <div class="col-12">
             <div class="row text-center justify-content-center">
-              <div class="col-5">
-                <mat-card class="example-card shadow p-3 m-3">
-                  <mat-card-header>
-                    <mat-card-title-group>
-                      <mat-card-title>Datos de inicio de sesión</mat-card-title>
+              <div class="col-10">
+                <mat-card class="example-card shadow p-3 m-3 col-10">
+                  <mat-card-header class="p-1 m-1">
+                    <mat-card-title-group class="row text-center justify-content-center">
+                      <mat-card-title class="col-12 text-center justify-content-center"> Datos de inicio de sesión</mat-card-title>
                     </mat-card-title-group>
                   </mat-card-header>
                   <mat-card-content class="p-0">
-                    <mat-form-field>
+                    <mat-form-field class="row col-7">
                       <mat-label>Ingrese su usuario</mat-label>
                       <input matInput formControlName="usuario" placeholder="Ingrese su usuario"  required>
                     </mat-form-field>
-                    <mat-form-field>
+                    <mat-form-field class="row col-7">
                       <mat-label>Ingrese su contraseña</mat-label>
                       <input matInput formControlName="contraseña" type="password" placeholder="Ingrese su contraseña"required>
                       <div *ngIf="thirdFormGroup.get('contraseña')?.invalid && (thirdFormGroup.get('contraseña')?.touched || thirdFormGroup.get('contraseña')?.dirty)">
                         <small *ngIf="thirdFormGroup.get('contraseña')?.errors?.['required']">La contraseña es requerida.</small>
                       </div>
                     </mat-form-field>
-                    <mat-form-field>
+                    <mat-form-field class="row col-7">
                       <mat-label>Repita la contraseña</mat-label>
                       <input matInput formControlName="Confirmcontraseña" type="password" placeholder="Repita la contraseña" required>
                     </mat-form-field>

@@ -1,14 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatStepper, MatStepperModule } from '@angular/material/stepper';
+import { MatStepperModule } from '@angular/material/stepper';
 import { Router } from '@angular/router';
-import { AuthService } from '../../authentication/AuthService/auth-service.service';
-import { ApiService } from '../../Service/api.service';
+import { Cita } from 'src/app/models/cita.model';
 
 export interface DialogData {
   errorMessage: string;
@@ -30,97 +28,49 @@ export interface DialogData {
   ],
 })
 export class CrearCitaComponent implements OnInit {
-  datos: any[] | undefined; 
-  selectedPersonId: string | null = null; 
-  firstFormGroup = this._formBuilder.group({
-    
-  });
-  secondFormGroup = this._formBuilder.group({
-    direccion: ['', Validators.required],
-  });
+  citaInfo: Cita
+  tipoServicioOptions = [
+    { value: true, label: "A domicilio" },
+    { value: false, label: "En establecimiento del profesional" },
+  ]
 
-  userId: number | null;
-  @ViewChild('stepper') stepper!: MatStepper;
-
-  citaJson: any = {};
-  constructor(
-    private ApiService: ApiService,
-    private _formBuilder: FormBuilder,
-    private authService: AuthService,
-    private router: Router,
-    private snackBar: MatSnackBar
-  ) {
-    this.userId = this.authService.getUserId(); 
-    this.secondFormGroup = this._formBuilder.group({
-      direccion: ['', Validators.required]
-    });
-  }
-
-  private showError(message: string): void {
-    this.snackBar.open(message, 'Cerrar', {
-      duration: 3000,
-      panelClass: ['custom-snackbar']
-    });
-  }
-
-  ngOnInit() {
-    // this.ApiService.GetEmpleados().subscribe(
-    //   (data) => {
-    //     this.datos = data;
-    //     console.log(this.datos);
-    //   },
-    //   (error) => {
-    //     console.error(error);
-    //   }
-    // );
-  }
-
-  seleccionarPersona(persona: any) {
-    this.selectedPersonId = persona.IdEmpleado;
-    this.stepper.next();
-  }
-  
-  enviarFormulario() {
-    if (this.selectedPersonId !== null) {
-      const informacionBasica = this.secondFormGroup.value;
-      const direccionControl = informacionBasica.direccion;
-      if (direccionControl !== null) {
-        console.log('IdEmpleado seleccionado:', this.selectedPersonId);
-        console.log('Dirección:', direccionControl);
-        console.log('id del usuario', this.userId)
-        this.citaJson = {
-          IdEmpleado: this.selectedPersonId,
-          DireccionDeLaCita: direccionControl,
-          IdUsuario: this.userId,
-          IdEstadoDeCita: 1,
-          idServicio : 1
-        };
-        this.ApiService.CreateNewCita(this.citaJson).subscribe(
-          (data) => {
-            this.datos = data;
-            console.log(this.datos);
-            this.router.navigate(['/admin']);
-          },
-          (error) => {
-            let errorMessage = "An error occurred";
-            console.error(error);
-            if (error.error) {
-              try {
-                const errorObj = JSON.parse(error.error);
-                errorMessage = errorObj.message || errorMessage;
-              } catch (e) {
-                errorMessage = error.message;
-              }
-            }
-            this.showError(errorMessage);
-          }
-        );
-      } else {
-        console.error('El control de dirección es nulo.');
-      }
-    } else {
-      console.error('No se ha seleccionado ninguna persona.');
+  constructor(private router: Router) {
+    // Datos de ejemplo - normalmente vendrían de un servicio
+    this.citaInfo = {
+      profesional: "Dr. Carlos Rodríguez",
+      profesion: "Estilista profesional",
+      imagenProfesional: "https://randomuser.me/api/portraits/men/36.jpg",
+      servicio: "Corte de cabello y barba",
+      esDomicilio: true,
+      valor: 45000,
+      fecha: "2025-05-25",
+      horaInicio: "14:30",
+      horaFin: "15:30",
+      direccion: "Calle 123 #45-67, Apto 502",
+      calendarData: null
     }
   }
-  
+
+  ngOnInit(): void {}
+
+  formatFecha(fecha: string): string {
+    return new Date(fecha).toLocaleDateString("es-ES", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    })
+  }
+
+  formatValor(valor: number): string {
+    return valor.toLocaleString("es-CO")
+  }
+
+  onTipoServicioChange(event: any): void {
+    this.citaInfo.esDomicilio = event.target.value === "true"
+  }
+
+  finalizarProceso(): void {
+    // Redireccionar al home
+    this.router.navigate(["/"])
+  }
 }

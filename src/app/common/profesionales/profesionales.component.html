@@ -1,7 +1,7 @@
 <div class="Startcontent"></div>
 <div class="container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
   <div *ngFor="let profesional of datos" 
-    class="card text-center w-full max-w-[500px] max-h-[370px] mx-auto shadow-lg rounded-lg overflow-hidden m-2">
+    class="card text-center w-full max-w-[500px] max-h-[370px] mx-auto shadow-lg rounded-lg overflow-hidden m-2 border border-white">
     <div class="card__img">
       <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="90%">
         <rect fill="#ffffff" width="540" height="450"></rect>
@@ -97,8 +97,8 @@
     <div class="card__title">{{profesional.name}} {{profesional.lastName}}</div>
     <div class="card__subtitle m-1">{{profesional.fieldsOfStudy}}</div>
     <div class="card__wrapper">
-        <button class="m-1" mat-raised-button>Basic</button>
-        <button class="m-1" mat-raised-button>Basic</button>
+        <button class="m-1" mat-raised-button (click)="saveProfesionalSelected(profesional)">Agendar</button>
+        <button class="m-1" mat-raised-button>Ver otros</button>
     </div>
   </div>
 </div>

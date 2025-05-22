@@ -1,5 +1,5 @@
 .footer {
-    background-color: #c1c1c0;
+    background: #C4CCC1;
     color: #808080;
     padding: 2rem 0;
 }
@@ -47,17 +47,59 @@
     opacity: 1;
 }
 
+/* 2. Animación en iconos sociales */
+.social-links a i,
+.social-links a span {
+    transition: transform 0.2s, color 0.3s;
+}
+.social-links a:focus i,
+.social-links a:hover i,
+.social-links a:focus span,
+.social-links a:hover span {
+    color: #fff;
+    transform: scale(1.2) rotate(-8deg);
+    outline: 2px solid #333;
+    outline-offset: 2px;
+}
+
+/* 4. Enlaces útiles */
+.useful-links a {
+    text-decoration: underline;
+    transition: color 0.3s;
+}
+.useful-links a:hover,
+.useful-links a:focus {
+    color: #fff;
+    background: #000;
+    border-radius: 4px;
+    outline: none;
+}
+
+/* 7. Responsive mejorado */
 @media (max-width: 768px) {
+    .contact-info,
+    .useful-links,
+    .copyright {
+        font-size: 0.9rem;
+        padding: 0.5rem 0;
+    }
     .nav-links {
         flex-direction: column;
         gap: 1rem;
     }
-    
     .nav-links a {
         padding: 0.5rem 0;
     }
-    
     .logo {
         margin: 1rem 0;
     }
+}
+
+/* 6. Mejor contraste y accesibilidad */
+.footer a {
+    outline: none;
+}
+.footer a:focus {
+    outline: 2px solid #333;
+    outline-offset: 2px;
 }

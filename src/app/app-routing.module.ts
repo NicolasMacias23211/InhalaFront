@@ -9,6 +9,7 @@ import { MisionComponent } from './main/mision/mision.component';
 import { RegistroComponent } from './main/registro/registro.component';
 import { VisionComponent } from './main/vision/vision.component';
 import { ServiciosComponent } from './main/servicios/servicios.component';
+import { CalendarioComponent } from '@common/calendario/calendario.component';
 
 const Routes: Routes = [
   {
@@ -42,6 +43,10 @@ const Routes: Routes = [
   {
     path: 'admin',
     component: AdminsViewsComponent
+  },
+  {
+    path: 'calendario',
+    component: CalendarioComponent
   },
   {
     path : 'profesionales',

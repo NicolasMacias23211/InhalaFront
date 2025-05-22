@@ -1,7 +1,8 @@
-<div class="relative min-h-screen w-full overflow-hidden Startcontent">
+<app-header></app-header>
+<div class="relative min-h-screen w-full overflow-hidden" style="padding-top: 120px">
     <!-- Background Image -->
     <img 
-      src="https://res.cloudinary.com/dzcwmdees/image/upload/v1740691455/antoine-barres_dbzwkf.jpg"
+      src="https://res.cloudinary.com/dzcwmdees/image/upload/v1747786903/lobostudio-hamburg-gxSgv-oO_YQ-unsplash_mebp2q.jpg"
       alt="Beautiful mountain landscape"
       class="absolute inset-0 object-cover w-full h-full"
     />
@@ -51,10 +52,9 @@
         <!-- Calendar Controls -->
         <div class="flex items-center justify-between p-4 border-b border-white/20">
           <div class="flex items-center gap-4">
-            <span class="text-2xl font-semibold text-white drop-shadow-lg">Calendar</span>
+            <span class="text-2xl font-semibold text-white drop-shadow-lg">Calendario</span>
           </div>
           <div class="flex items-center gap-4">
-            <button class="px-4 py-2 text-white bg-blue-500 rounded-md">Today</button>
             <div class="flex">
               <button class="p-2 text-white hover:bg-white/10 rounded-l-md">
               </button>
@@ -98,14 +98,14 @@
                 <!-- Events -->
                 <div *ngFor="let event of getEventsForDay(i); let k = index"
                   class="absolute rounded-md p-2 text-black text-xs shadow-md cursor-pointer transition-all duration-200 ease-in-out hover:translate-y-[-2px] hover:shadow-lg"
-                  style="background-color: #C4CCC1;"
+                  style="background-color: #b7ceaf;"
                   [style.top]="calculateEventStyle(event.startTime, event.endTime).top"
                   [style.height]="calculateEventStyle(event.startTime, event.endTime).height"
                   [style.left]="'4px'"
                   [style.right]="'4px'"
                   (click)="handleEventClick(event)"
                 >
-                  <div class="font-medium">Sesion disponible</div>
+                  <div class="font-large">Sesion disponible</div>
                   <div class="opacity-80 text-[10px] mt-1">{{ event.startTime }} - {{ event.endTime }}</div>
                 </div>
               </div>
@@ -134,40 +134,33 @@
   
       <!-- Event Details Modal -->
       <div *ngIf="selectedEvent" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-        <div class="p-6 rounded-lg shadow-xl max-w-md w-full mx-4" style="background-color: #C4CCC1;"
-        >
-          <h3 class="text-2xl font-bold mb-4 text-black">Sesion disponible</h3>
+        <div class="p-6 rounded-lg shadow-xl max-w-md w-full mx-4" style="background-color:#c5cec2; position: relative;">
+          <!-- Close Button -->
+          <button
+        (click)="selectedEvent = null"
+        class="absolute top-3 right-3 text-gray-600 hover:text-black text-xl font-bold focus:outline-none"
+        aria-label="Cerrar"
+          >
+        &times;
+          </button>
+          <h3 class="text-2xl font-bold mb-4 text-black font-bold">Sesion disponible</h3>
           <div class="space-y-3 text-black">
-            <p class="flex items-center">
-              {{ selectedEvent.startTime }} - {{ selectedEvent.endTime }}
-            </p>
-            <p class="flex items-center">
-              {{ selectedEvent.location }}
-            </p>
-            <p class="flex items-center">
-              {{ weekDays[selectedEvent.days_dayID - 1] }}, {{ weekDates[selectedEvent.days_dayID - 1] }} {{ currentMonth }}
-            </p>
-            <p class="flex items-start">
-              <span>
-                <strong>Attendees:</strong>
-                <br />
-                {{ selectedEvent.attendees.join(', ') || 'No attendees' }}
-              </span>
-            </p>
-            <p>
-              <strong>Organizer:</strong> {{ selectedEvent.organizer }}
-            </p>
-            <p>
-              <strong>Description:</strong> {{ selectedEvent.description }}
-            </p>
+        <p class="flex items-center">
+          {{ selectedEvent.startTime }} - {{ selectedEvent.endTime }}
+        </p>
+        <p class="flex items-center">
+          {{ weekDays[selectedEvent.days_dayID - 1] }}, {{ weekDates[selectedEvent.days_dayID - 1] }} {{ currentMonth }}
+        </p>
+        <p class="flex items-start">
+          por favor validar que la hora y el dia seleccionado sea el correcto, antes de continuar con la reserva
+        </p>
           </div>
-          <div class="mt-6 flex justify-end">
-            <button
-              class="bg-white text-gray-800 px-4 py-2 rounded hover:bg-gray-100 transition-colors"
-              (click)="selectedEvent = null"
-            >
-              Close
-            </button>
+          <div class="mt-6 flex justify-center">
+        <button class="bg-white text-gray-800 px-4 py-2 rounded hover:bg-gray-100 transition-colors"
+          (click)="reservarCita(selectedEvent)"
+        >
+          Reservar
+        </button>
           </div>
         </div>
       </div>

@@ -128,12 +128,12 @@ export class PasosDeRegistroComponent implements OnInit{
       antecendetesQuirurgicos: informacionMedica.quirúrgicos,
       antecendetesFarmaceuticos: informacionMedica.farmacológicos,
       antecendetesToxicos: informacionMedica.Alérgicos,
-      fuma: informacionMedica.fumador,
-      bebe: informacionMedica.alcohol,
-      ejercisio: informacionMedica.ejercicio,
+      fuma: isValidBoolean(informacionMedica.fumador),
+      bebe: isValidBoolean(informacionMedica.alcohol),
+      ejercisio: isValidBoolean(informacionMedica.ejercicio),
       antecendetesFamiliares: informacionMedica.familiares,
       userName: informacionsesion.usuario,
-      contrasena: informacionsesion.contraseña
+      password: informacionsesion.contraseña
     };
     console.log(this.jsonData);
     this.submitLoginForm(this.jsonData);
@@ -149,8 +149,7 @@ export class PasosDeRegistroComponent implements OnInit{
     this.ApiService.CreateNewCustomer(JsonData).subscribe({
       next: (response) => {
         let data = JSON.parse(response);
-        console.log(data.insert);
-        if (data && data.insert) {
+        if (data && typeof data.success === 'boolean') {
           this.router.navigate(['/login']);
         }
       },
@@ -160,12 +159,14 @@ export class PasosDeRegistroComponent implements OnInit{
         if (error.error) {
           try {
             const errorObj = JSON.parse(error.error);
-            errorMessage = errorObj.message || errorMessage;
+            console.log(errorObj);
           } catch (e) {
-            errorMessage = error.message;
+            console.log(error);
           }
         }
-        this.showError(errorMessage);
+        this.showError(
+          "Ha ocurrido un error al crear el usuario. Por favor, verifica los datos ingresados e intenta nuevamente."
+        );
       },
       complete: () => {
         console.log("Solicitud completada");
@@ -188,5 +189,12 @@ export function confirmPasswordValidator(controlName: string, matchingControlNam
     }
     return null;
   };
+}
+
+function isValidBoolean(value: any): boolean {
+  if (typeof value === 'string') {
+    return value.toLowerCase() === 'true';
+  }
+  return !!value;
 }
 

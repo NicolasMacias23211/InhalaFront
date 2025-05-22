@@ -1,4 +1,8 @@
-<nav class="navbar navbar-expand-md navbar-light fixed-top py-2" [ngClass]="{'transparent-header': router.url === '/', 'solid-header': router.url !== '/'}">
+<nav class="navbar navbar-expand-md navbar-light fixed-top py-2.5"
+    [ngClass]="{
+    'transparent-header': router.url === '/' || router.url.includes('calendario'),
+    'solid-header': router.url !== '/' && !router.url.includes('calendario')
+    }">
   <div class="container-fluid d-flex flex-wrap justify-content-start">
       <ul class="nav me-auto">
           <li class="nav-item"><a href="" class="nav-link link-secondary px-2 active" aria-current="page">Inicio</a></li>
@@ -7,12 +11,39 @@
           <li class="nav-item"><a href="" class="nav-link link-secondary px-2">Los masajes y sus beneficios</a></li>
       </ul>
       <ul class="nav">
-          <li class="nav-item"><a href="registro" class="nav-link link-secondary px-2">Registrarse</a></li>
-          <li class="nav-item"><a href="login" class="nav-link link-secondary px-2">Iniciar sesión</a></li>
+          <ng-container *ngIf="sessionService.isLoggedIn(); else showAuthLinks">
+            <!-- Avatar y nombre -->
+            <div class="d-flex align-items-center me-3">
+              <img 
+                *ngIf="user?.photo; else defaultAvatar"
+                [src]="user?.photo" 
+                alt="Avatar" 
+                class="rounded-circle me-2" 
+                width="32" 
+                height="32"
+              />
+              <ng-template #defaultAvatar>
+                <div class="bg-secondary rounded-circle me-2" style="width: 32px; height: 32px;"></div>
+              </ng-template>
+              <span>{{ user?.name }} {{ user?.secondName }} {{ user?.lastName }}</span>
+            </div>
+            <!-- Botón de logout -->
+            <button class="btn-sm" (click)="logout()">
+              <i class="fa-solid fa-power-off"></i>
+            </button>
+          </ng-container>
+          <ng-template #showAuthLinks>
+            <li class="nav-item"><a href="registro" class="nav-link link-secondary px-2">Registrarse</a></li>
+            <li class="nav-item"><a href="login" class="nav-link link-secondary px-2">Iniciar sesión</a></li>
+          </ng-template>
       </ul>
   </div>
 </nav>
-<nav class="navbar navbar-expand-md navbar-light fixed-top py-2" style="top: 56px;" [ngClass]="{'transparent-header_bottom': router.url === '/', 'solid-header_bottom': router.url !== '/'}">
+<nav class="navbar navbar-expand-md navbar-light fixed-top py-2" style="top: 56px;"
+     [ngClass]="{
+    'transparent-header_bottom': router.url === '/' || router.url.includes('calendario'),
+    'solid-header_bottom': router.url !== '/' && !router.url.includes('calendario')
+  }">
     <div class="container-fluid d-flex flex-wrap justify-content-start" style="margin-left: 2vw">
         <a href="/" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
             <img src="https://res.cloudinary.com/dzcwmdees/image/upload/v1740691455/CataBlanca_lvxwkg.png" style="height: 60px; width: 70px;">
