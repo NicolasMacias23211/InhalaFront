@@ -1,7 +1,7 @@
 .transparent-header {
     border-bottom-width: 0;
     padding-bottom: 0;
-    Background-color: transparent; 
+    background-color: transparent; 
 }
 
 .solid-header {
@@ -15,7 +15,7 @@
 .transparent-header_bottom {
     border-bottom-width: 0;
     padding-bottom: 0;
-    Background-color: transparent; 
+    background-color: transparent; 
 }
 
 .solid-header_bottom {
