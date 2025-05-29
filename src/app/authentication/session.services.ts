@@ -30,4 +30,12 @@ export class SessionService {
     isLoggedIn(): boolean {
         return this.getItem<boolean>('isLoggedIn') === true;
     }
+
+    isAdmin(): boolean {
+        return this.getItem<boolean>('isAdmin') === true;
+    }
+
+    setIsAdmin(isAdmin: boolean): void {
+        this.setItem('isAdmin', isAdmin);
+    }
 }

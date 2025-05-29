@@ -10,6 +10,7 @@
         <app-header></app-header>
     </header>
     <main class="container Startcontent">
+      <ng-container *ngIf="isAdmin; else soloCitas">
         <mat-button-toggle-group 
           name="fontStyle" 
           aria-label="Font Style" 
@@ -26,7 +27,11 @@
         <app-users-tables *ngIf="selectedComponent === 'users'"></app-users-tables>
         <app-citas-tables *ngIf="selectedComponent === 'citas'"></app-citas-tables>
         <app-employees-tables *ngIf="selectedComponent === 'Empleados'"></app-employees-tables>
-      </main>
+      </ng-container>
+      <ng-template #soloCitas>
+        <app-citas-tables></app-citas-tables>
+      </ng-template>
+    </main>
     <footer>
         <app-foother></app-foother>
     </footer>

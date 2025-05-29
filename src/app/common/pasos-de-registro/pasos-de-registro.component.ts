@@ -110,8 +110,6 @@ export class PasosDeRegistroComponent implements OnInit{
     const informacionMedica = this.secondFormGroup.value;
     const informacionsesion = this.thirdFormGroup.value;
     const fechaNacimientoFormateada = this.datePipe.transform(informacionBasica.FechaNacimiento, 'yyyy-MM-dd');
-    console.log('Fecha de nacimiento original:', informacionBasica.FechaNacimiento);
-    console.log('Fecha de nacimiento formateada:', fechaNacimientoFormateada);
 
     this.jsonData = {
       nombre: informacionBasica.Nombre,
@@ -135,7 +133,6 @@ export class PasosDeRegistroComponent implements OnInit{
       userName: informacionsesion.usuario,
       password: informacionsesion.contraseña
     };
-    console.log(this.jsonData);
     this.submitLoginForm(this.jsonData);
   }
 
@@ -155,7 +152,6 @@ export class PasosDeRegistroComponent implements OnInit{
       },
       error: (error) => {
         console.error(error);
-        let errorMessage = "An error occurred";
         if (error.error) {
           try {
             const errorObj = JSON.parse(error.error);
@@ -167,9 +163,6 @@ export class PasosDeRegistroComponent implements OnInit{
         this.showError(
           "Ha ocurrido un error al crear el usuario. Por favor, verifica los datos ingresados e intenta nuevamente."
         );
-      },
-      complete: () => {
-        console.log("Solicitud completada");
       }
     });
   }

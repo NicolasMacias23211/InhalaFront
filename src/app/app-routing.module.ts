@@ -41,7 +41,7 @@ const Routes: Routes = [
     component: CitaComponent
   },
   {
-    path: 'admin',
+    path: 'mis_citas',
     component: AdminsViewsComponent
   },
   {

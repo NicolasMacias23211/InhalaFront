@@ -77,6 +77,7 @@ export class ServicesCardsComponent implements OnInit {
     }
     sessionStorage.setItem('serviceId', serviceSelected.serviceID.toString());
     sessionStorage.setItem('serviceName', serviceSelected.serviceName);
+    sessionStorage.setItem('servicePrice', serviceSelected.cost.toString());
     if (sessionStorage.getItem('profesionalId') !== null) {
         this.router.navigate(['/calendario']);
     }else{

@@ -7,8 +7,8 @@
       <ul class="nav me-auto">
           <li class="nav-item"><a href="" class="nav-link link-secondary px-2 active" aria-current="page">Inicio</a></li>
           <li class="nav-item"><a href="servicios" class="nav-link link-secondary px-2">Servicios</a></li>
-          <li class="nav-item"><a href="profesionales" class="nav-link link-secondary px-2">profesionales</a></li>
-          <li class="nav-item"><a href="" class="nav-link link-secondary px-2">Los masajes y sus beneficios</a></li>
+          <li class="nav-item"><a href="profesionales" class="nav-link link-secondary px-2">Profesionales</a></li>
+          <li class="nav-item"><a href="" class="nav-link link-secondary px-2">Los Masajes y sus Beneficios</a></li>
       </ul>
       <ul class="nav">
           <ng-container *ngIf="sessionService.isLoggedIn(); else showAuthLinks">
@@ -28,6 +28,12 @@
               <span>{{ user?.name }} {{ user?.secondName }} {{ user?.lastName }}</span>
             </div>
             <!-- Botón de logout -->
+            <button class="btn-sm ml-2 mr-4" (click)="controlPanel()">
+                <i class="fa-solid fa-gear"></i>
+            </button>
+            <button class="btn-sm mr-4">
+                <i class="fa-solid fa-grip-lines-vertical"></i>
+            </button>
             <button class="btn-sm" (click)="logout()">
               <i class="fa-solid fa-power-off"></i>
             </button>
@@ -47,7 +53,7 @@
     <div class="container-fluid d-flex flex-wrap justify-content-start" style="margin-left: 2vw">
         <a href="/" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
             <img src="https://res.cloudinary.com/dzcwmdees/image/upload/v1740691455/CataBlanca_lvxwkg.png" style="height: 60px; width: 70px;">
-            <span class="fs-5 ms-2" style="color: #888c8c;">Inhala Profesionales en terapias manuales</span>
+            <span class="fs-5 ms-2" style="color: #888c8c;">Inhala Profesionales en Terapias Manuales</span>
         </a>
     </div>
 </nav>

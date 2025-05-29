@@ -12,7 +12,6 @@ import { ApiService } from 'src/app/Service/api.service';
 export class HeaderComponent implements OnInit {
   user: LoggedUserData | null = null;
   readonly documentValue: number = this.sessionService.getItem("document") ?? 0;
-  private userLoaded: boolean = false; 
   constructor(
     public router: Router,
     public sessionService: SessionService,
@@ -20,10 +19,11 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if (this.sessionService.isLoggedIn() && !this.userLoaded) {
-      this.userLoaded = true; 
+    if (this.sessionService.isLoggedIn()) {
       this.apiService.getMembersByDocument(this.documentValue).subscribe(data => {
         this.user = data;
+        this.sessionService.setItem("UserAddress", data.address);
+        this.sessionService.setIsAdmin(Boolean(data.roleName));
       });
     }
   }
@@ -31,6 +31,10 @@ export class HeaderComponent implements OnInit {
   logout(): void {
     this.sessionService.clear();
     this.router.navigate(['/login']);
+  }
+
+  controlPanel(): void {
+    this.router.navigate(['/mis_citas']);
   }
 }
 

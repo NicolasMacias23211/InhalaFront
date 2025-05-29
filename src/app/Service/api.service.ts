@@ -7,6 +7,9 @@ import { CalendarEvent } from '../models/calendarEventModel';
 import { Professional } from '../models/professionalsModel';
 import { LoginResponseModel } from '../models/loginModel';
 import { LoggedUserData } from '../models/loggedUserData.model';
+import { createCitaModel } from '../models/createCitaModel';
+import { genericModel } from '../models/generic.model';
+import { getCitasModel } from '../models/getCita.model';
 
 
 @Injectable({
@@ -35,9 +38,9 @@ export class ApiService {
     return this.http.post(`${this.API_URL}/createMember`, body,{ headers: this.headers });
   }
 
-  CreateNewCita(json : any): Observable<any> {
-    const body = json;
-    return this.http.post(`${this.API_URL}/CreateNewCita`, body,{ headers: this.headers });
+  CreateNewCita(data : createCitaModel): Observable<genericModel> {
+    const body = data;
+    return this.http.post<genericModel>(`${this.API_URL}/createAppointment`, body,{ headers: this.headers });
   }
 
   getProfessionals(serviceId?: number): Observable<Professional[]> {
@@ -56,8 +59,12 @@ export class ApiService {
     return this.http.get<ServiceListModel[]>(`${this.API_URL}/servicios`, { params,headers: this.headers });
   }
 
-  GetCitas():Observable<any>{
-    return this.http.get(`${this.API_URL}/citas`,{ headers: this.headers });
+  GetCitas(userID?: number):Observable<getCitasModel[]>{
+    let params = new HttpParams();
+    if (userID) {
+      params = params.set('customerID', userID);
+    }
+    return this.http.get<getCitasModel[]>(`${this.API_URL}/appointments`,{ params,headers: this.headers });
   }
   
   updateEmpleado(empleado: any): Observable<any> {
@@ -74,6 +81,10 @@ export class ApiService {
 
   getMembersByDocument(memberDocumnet: number): Observable<LoggedUserData> {
     return this.http.get<LoggedUserData>(this.API_URL + `/members/${memberDocumnet}`, { headers: this.headers });
+  }
+
+  cancelCita(appointmentId: number): Observable<genericModel> {
+    return this.http.delete<genericModel>(`${this.API_URL}/appointments/${appointmentId}`, { headers: this.headers });
   }
 
 }

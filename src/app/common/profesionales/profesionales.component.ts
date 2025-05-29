@@ -58,9 +58,10 @@ export class ProfesionalesComponent implements OnInit {
       return;
     }
     sessionStorage.setItem('profesionalId', profesionalSelected.document.toString());
-    sessionStorage.setItem('profesionalName',profesionalSelected.name );
+    sessionStorage.setItem('profesionalName',profesionalSelected.name + " " + profesionalSelected.lastName);
     sessionStorage.setItem('profesionalImage', profesionalSelected.photo);
     sessionStorage.setItem('profesionaltype', profesionalSelected.fieldsOfStudy);
+    sessionStorage.setItem('ProfesionalAddress', profesionalSelected.address);
     if (sessionStorage.getItem('serviceId') !== null) {
         this.router.navigate(['/calendario']);
     }else{

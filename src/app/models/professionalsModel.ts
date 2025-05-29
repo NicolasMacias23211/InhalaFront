@@ -6,4 +6,5 @@ export interface Professional {
     phone: number;
     photo: string;
     fieldsOfStudy: string;
+    address: string;
 }

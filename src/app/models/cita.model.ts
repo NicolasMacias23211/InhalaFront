@@ -6,10 +6,9 @@ export interface Cita {
   imagenProfesional: string
   servicio: string
   esDomicilio: boolean
-  valor: number
-  fecha: string
-  horaInicio: string
-  horaFin: string
-  direccion: string
-  calendarData: CalendarEvent | null //por ahora se deja que pueda se null para ajustarlo
+  valor: string
+  direccionUsuario: string
+  date : Date
+  direccionProfesional: string
+  calendarData: CalendarEvent
 }

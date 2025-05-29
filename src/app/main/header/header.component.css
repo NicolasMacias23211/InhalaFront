@@ -38,3 +38,9 @@
 ul{
     margin-left: 7vw;
 }
+
+.dropdown-menu {
+  z-index: 1000; /* Ensure it's above other elements */
+  max-height: 300px; /* Adjust as needed */
+  overflow-y: auto; /* Add scroll if content overflows */
+}

@@ -55,7 +55,6 @@ export class CalendarioComponent {
       this.ApiService.getSheduleUser(Number(sessionStorage.getItem("profesionalId"))).subscribe(
         (data) => {
           this.events = data || [];
-          console.log(this.events);
         },
         (error) => {
           console.error(error);
@@ -124,20 +123,17 @@ export class CalendarioComponent {
     const diaMes = this.weekDates[event.days_dayID - 1];   // Ej: 19
     const mesYAnio = this.currentMonth;                    // Ej: "mayo de 2025"
     const horaInicioStr = event.startTime;                 // Ej: "08:00:00"
-
-    // Extraer mes y año
-    const [mesTexto, , anio] = mesYAnio.split(' '); // ["mayo", "de", "2025"]
+    const [mesTexto, , anio] = mesYAnio.split(' '); 
     const meses = [
       'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
       'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
     ];
     const mes = meses.indexOf(mesTexto.toLowerCase());
-
-    // Extraer hora y minutos
     const [hora, minuto] = horaInicioStr.split(':').map(Number);
-
-    // Crear el objeto Date
     const eventDate = new Date(Number(anio), mes, Number(diaMes), hora, minuto);
+
+// Formatea la fecha a ISO string sin comillas dobles ni caracteres extra
+    let fechaFinal = eventDate.toISOString().slice(0, 10); // Ejemplo: "2025-05-19"
 
     const now = new Date();
     if (eventDate < now) {
@@ -145,7 +141,12 @@ export class CalendarioComponent {
       return;
     }
     const IdSelectd = event.scheduleId;
+    fechaFinal = `${diaSemana} ${diaMes} ${mesYAnio}`;
     this.sessionService.setItem('scheduleEvent', event);
+    this.sessionService.setItem('scheduleDate', fechaFinal);
+    this.sessionService.setItem('scheduleId', IdSelectd);
+    this.router.navigate(['/cita']);
   }
+
 }
 
