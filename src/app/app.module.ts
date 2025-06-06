@@ -38,6 +38,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { EmployeesTablesComponent } from './common/employees-tables/employees-tables.component';
 import { EmployeeEditModalComponent } from './common/employee-edit-modal/employee-edit-modal.component';
 import { CarouselComponent } from './common/image-carrusel/image-carrusel.component';
+import { MasajesYBeneficiosComponent } from './main/masajes-ybeneficios/masajes-ybeneficios.component';
+import { MasajesYBeneficiosContentComponent } from './common/masajes-ybeneficios-content/masajes-ybeneficios-content.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +56,8 @@ import { CarouselComponent } from './common/image-carrusel/image-carrusel.compon
     CalendarioComponent,
     CitaComponent,
     AdminsViewsComponent,
+    MasajesYBeneficiosComponent,
+    MasajesYBeneficiosContentComponent,
   ],
   imports: [
     BrowserModule,

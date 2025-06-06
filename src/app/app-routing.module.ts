@@ -10,6 +10,7 @@ import { RegistroComponent } from './main/registro/registro.component';
 import { VisionComponent } from './main/vision/vision.component';
 import { ServiciosComponent } from './main/servicios/servicios.component';
 import { CalendarioComponent } from '@common/calendario/calendario.component';
+import { MasajesYBeneficiosComponent } from '@main/masajes-ybeneficios/masajes-ybeneficios.component';
 
 const Routes: Routes = [
   {
@@ -51,6 +52,10 @@ const Routes: Routes = [
   {
     path : 'profesionales',
     component : EmpleadosComponent
+  },
+  {
+    path: 'Masajes_y_beneficios',
+    component: MasajesYBeneficiosComponent
   },
   {
     path: '**',

@@ -24,9 +24,9 @@ import { ApiService } from '../../Service/api.service';
 })
 export class UsersTablesComponent implements OnInit {
   displayedColumns: string[] = [
-    'Nombre', 'PrimerApellido', 'SegundoApellido', 'Documento',
-    'FechaNacimiento', 'Sexo', 'CorreoElectronico', 'Telefono', 'Direccion',
-    'Ocupacion', 'RH'
+    'Nombre', 'PrimerApellido', 'Documento',
+    'CorreoElectronico', 'Telefono', 'Direccion',
+    'Ocupacion'
   ];
   dataSource = new MatTableDataSource<any>();
 
@@ -36,7 +36,7 @@ export class UsersTablesComponent implements OnInit {
   constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
-    this.apiService.GetUsuarios().subscribe(data => {
+    this.apiService.getProfessionals().subscribe(data => {
       this.dataSource.data = data;
       if (this.paginator) {
         this.dataSource.paginator = this.paginator;

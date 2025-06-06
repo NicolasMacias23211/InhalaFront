@@ -12,8 +12,10 @@ import { getCitasModel } from 'src/app/models/getCita.model';
 import {SessionService} from 'src/app/authentication/session.services';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { jsPDF } from "jspdf";
+import autoTable from 'jspdf-autotable';
 
-declare var $: any; // Agrega esto arriba de la clase
+declare var $: any;
 
 @Component({
   selector: 'app-citas-tables',
@@ -104,5 +106,33 @@ export class CitasTablesComponent implements OnInit {
       this.selectedAppointmentId = null;
       $('#exampleModal').modal('hide');
     }
+  }
+
+  generatePDF() {
+    const doc = new jsPDF();
+    const tableData = this.dataSource.data.map((row) => [
+      row.address,
+      row.professionalName + row.professionalLastName,
+      row.memberName + row.memberLastName,
+      row.serviceName,
+      row.appointmentStatus,
+      row.startTime + ' - ' + row.endTime
+    ]);
+
+    const tableHeaders = [
+      'Dirección',
+      'Profesional',
+      'Usuario',
+      'Servicio',
+      'Estado',
+      'Hora',
+    ];
+
+    doc.text('Citas Activas', 10, 10); 
+    autoTable(doc, {
+      head: [tableHeaders],
+      body: tableData,
+    });
+    doc.save('Citas.pdf'); 
   }
 }

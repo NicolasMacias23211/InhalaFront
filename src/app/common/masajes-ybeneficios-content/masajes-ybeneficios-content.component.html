@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masoterapia y Fisioterapia - Cuidado Integral de la Salud</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#059669',
+                        secondary: '#0891b2',
+                        accent: '#7c3aed'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #059669 0%, #0891b2 50%, #7c3aed 100%);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Introducción -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">¿Por qué son Esenciales para tu Salud?</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    La masoterapia y fisioterapia no son solo tratamientos, son inversiones en tu calidad de vida y bienestar integral
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center card-hover bg-gradient-to-br from-green-50 to-green-100 p-8 rounded-2xl">
+                    <div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-6 floating">
+                        <i class="fas fa-shield-alt text-3xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Prevención</h3>
+                    <p class="text-gray-600">Previene lesiones y mantiene tu cuerpo en óptimas condiciones antes de que aparezcan problemas</p>
+                </div>
+
+                <div class="text-center card-hover bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-2xl">
+                    <div class="w-20 h-20 bg-secondary rounded-full flex items-center justify-center mx-auto mb-6 floating" style="animation-delay: 0.5s;">
+                        <i class="fas fa-heart text-3xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Recuperación</h3>
+                    <p class="text-gray-600">Acelera la recuperación de lesiones y restaura la funcionalidad completa de tu cuerpo</p>
+                </div>
+
+                <div class="text-center card-hover bg-gradient-to-br from-purple-50 to-purple-100 p-8 rounded-2xl">
+                    <div class="w-20 h-20 bg-accent rounded-full flex items-center justify-center mx-auto mb-6 floating" style="animation-delay: 1s;">
+                        <i class="fas fa-spa text-3xl text-black"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Bienestar</h3>
+                    <p class="text-gray-600">Mejora tu calidad de vida reduciendo el estrés y promoviendo la relajación profunda</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Masoterapia -->
+    <section id="masoterapia" class="py-20 bg-gradient-to-r from-green-50 to-emerald-50">
+        <div class="container mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="fade-in">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-hands text-2xl text-white"></i>
+                        </div>
+                        <h2 class="text-4xl font-bold text-gray-800">Masoterapia</h2>
+                    </div>
+                    
+                    <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+                        La masoterapia es una disciplina terapéutica que utiliza técnicas manuales especializadas para tratar diversas afecciones del sistema musculoesquelético y promover el bienestar general.
+                    </p>
+
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-check-circle text-primary text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Alivio del Dolor Muscular</h4>
+                                <p class="text-gray-600">Reduce tensiones, contracturas y puntos gatillo que causan dolor crónico</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-check-circle text-primary text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Mejora la Circulación</h4>
+                                <p class="text-gray-600">Estimula el flujo sanguíneo y linfático, favoreciendo la oxigenación celular</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-check-circle text-primary text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Reducción del Estrés</h4>
+                                <p class="text-gray-600">Libera endorfinas naturales que combaten el estrés y la ansiedad</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <div class="bg-white p-8 rounded-3xl shadow-2xl card-hover">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6">Técnicas Especializadas</h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-green-50 p-4 rounded-xl text-center">
+                                <i class="fas fa-hand-paper text-primary text-2xl mb-2"></i>
+                                <p class="font-semibold">Masaje Sueco</p>
+                            </div>
+                            <div class="bg-green-50 p-4 rounded-xl text-center">
+                                <i class="fas fa-fire text-primary text-2xl mb-2"></i>
+                                <p class="font-semibold">Masaje Deportivo</p>
+                            </div>
+                            <div class="bg-green-50 p-4 rounded-xl text-center">
+                                <i class="fas fa-leaf text-primary text-2xl mb-2"></i>
+                                <p class="font-semibold">Masaje Relajante</p>
+                            </div>
+                            <div class="bg-green-50 p-4 rounded-xl text-center">
+                                <i class="fas fa-compress-arrows-alt text-primary text-2xl mb-2"></i>
+                                <p class="font-semibold">Masaje Terapéutico</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fisioterapia -->
+    <section id="fisioterapia" class="py-20 bg-gradient-to-r from-blue-50 to-cyan-50">
+        <div class="container mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="relative order-2 lg:order-1">
+                    <div class="bg-white p-8 rounded-3xl shadow-2xl card-hover">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6">Áreas de Especialización</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-3 p-3 bg-blue-50 rounded-lg">
+                                <i class="fas fa-running text-secondary text-xl"></i>
+                                <span class="font-semibold">Fisioterapia Deportiva</span>
+                            </div>
+                            <div class="flex items-center space-x-3 p-3 bg-blue-50 rounded-lg">
+                                <i class="fas fa-brain text-secondary text-xl"></i>
+                                <span class="font-semibold">Neurorehabilitación</span>
+                            </div>
+                            <div class="flex items-center space-x-3 p-3 bg-blue-50 rounded-lg">
+                                <i class="fas fa-bone text-secondary text-xl"></i>
+                                <span class="font-semibold">Traumatología</span>
+                            </div>
+                            <div class="flex items-center space-x-3 p-3 bg-blue-50 rounded-lg">
+                                <i class="fas fa-lungs text-secondary text-xl"></i>
+                                <span class="font-semibold">Fisioterapia Respiratoria</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fade-in order-1 lg:order-2">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-secondary rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-user-md text-2xl text-white"></i>
+                        </div>
+                        <h2 class="text-4xl font-bold text-gray-800">Fisioterapia</h2>
+                    </div>
+                    
+                    <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+                        La fisioterapia es una ciencia de la salud que se dedica al estudio, diagnóstico, prevención y tratamiento de las disfunciones del movimiento humano mediante técnicas científicamente validadas.
+                    </p>
+
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-check-circle text-secondary text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Restauración Funcional</h4>
+                                <p class="text-gray-600">Recupera la movilidad y funcionalidad perdida por lesiones o enfermedades</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-check-circle text-secondary text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Fortalecimiento Muscular</h4>
+                                <p class="text-gray-600">Desarrolla la fuerza y resistencia muscular de forma progresiva y segura</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-check-circle text-secondary text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Educación Postural</h4>
+                                <p class="text-gray-600">Enseña hábitos posturales correctos para prevenir futuras lesiones</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Beneficios Comparativos -->
+    <section id="beneficios" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Beneficios Comprobados Científicamente</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Ambas disciplinas ofrecen beneficios únicos que se complementan para tu salud integral
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <!-- Masoterapia Benefits -->
+                <div class="bg-gradient-to-br from-green-50 to-emerald-100 p-8 rounded-3xl card-hover">
+                    <div class="flex items-center mb-6">
+                        <i class="fas fa-hands text-primary text-3xl mr-4"></i>
+                        <h3 class="text-2xl font-bold text-gray-800">Beneficios de la Masoterapia</h3>
+                    </div>
+                    <ul class="space-y-3">
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-star text-yellow-500"></i>
+                            <span>Reduce el cortisol (hormona del estrés) hasta un 31%</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-star text-yellow-500"></i>
+                            <span>Mejora la calidad del sueño en un 85% de los casos</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-star text-yellow-500"></i>
+                            <span>Aumenta la flexibilidad muscular hasta un 40%</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-star text-yellow-500"></i>
+                            <span>Fortalece el sistema inmunológico</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-star text-yellow-500"></i>
+                            <span>Reduce la presión arterial naturalmente</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Fisioterapia Benefits -->
+                <div class="bg-gradient-to-br from-blue-50 to-cyan-100 p-8 rounded-3xl card-hover">
+                    <div class="flex items-center mb-6">
+                        <i class="fas fa-user-md text-secondary text-3xl mr-4"></i>
+                        <h3 class="text-2xl font-bold text-gray-800">Beneficios de la Fisioterapia</h3>
+                    </div>
+                    <ul class="space-y-3">
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-star text-yellow-500"></i>
+                            <span>Recuperación 50% más rápida de lesiones</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-star text-yellow-500"></i>
+                            <span>Previene recaídas en un 70% de los casos</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-star text-yellow-500"></i>
+                            <span>Mejora el equilibrio y coordinación</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-star text-yellow-500"></i>
+                            <span>Reduce la dependencia de medicamentos</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-star text-yellow-500"></i>
+                            <span>Aumenta la independencia funcional</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Estadísticas -->
+            <div class="grid md:grid-cols-4 gap-6">
+                <div class="text-center p-6 bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl">
+                    <div class="text-4xl font-bold text-accent mb-2">92%</div>
+                    <p class="text-gray-600">Pacientes reportan mejora significativa</p>
+                </div>
+                <div class="text-center p-6 bg-gradient-to-br from-orange-50 to-red-50 rounded-2xl">
+                    <div class="text-4xl font-bold text-orange-500 mb-2">15min</div>
+                    <p class="text-gray-600">Tiempo promedio para sentir alivio</p>
+                </div>
+                <div class="text-center p-6 bg-gradient-to-br from-teal-50 to-green-50 rounded-2xl">
+                    <div class="text-4xl font-bold text-teal-500 mb-2">24h</div>
+                    <p class="text-gray-600">Duración de los beneficios</p>
+                </div>
+                <div class="text-center p-6 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl">
+                    <div class="text-4xl font-bold text-indigo-500 mb-2">0</div>
+                    <p class="text-gray-600">Efectos secundarios negativos</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
